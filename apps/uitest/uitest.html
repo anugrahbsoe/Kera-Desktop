@@ -1,0 +1,283 @@
+<html>
+<head>
+<script src="js/window.js"></script>
+
+	<script type="text/javascript">
+		$.getScript( "js/close-window.js"); 
+		$.getScript( "js/menu.js");
+
+		var this_app = $(".window:last").parent().attr('id');
+		$("#"+this_app).children(".window").position({
+			my: "center",
+			at: "center",
+			of: "#desktop"
+		}); 
+		
+		//Add this application to taskbar
+		var running_windows = $('#application').children().length;
+		$("#taskbar").append("<div class='taskbar-item' id='tb-"+running_windows+"' app='uitest' style='background-color: rgb(82, 255, 119);'><img class='taskbar-item-icon' src='apps/uitest/icon.svg'></img></div>");
+
+		//i18n
+		$.getJSON("user/loggedin.json", function(user){
+		$.getJSON("user/"+user.user+"/settings", function(json) {
+			$.each(json.locale,function (i,locale) {
+				$.getJSON("apps/uitest/locale/"+locale.language+".json", function(i18n){
+					
+				});
+			})
+		});
+		});
+
+
+		$("#quit").click(function(){
+			$(this).parent().parent().children(".w-buttons").children(".w-button-close").trigger("click");
+			$(this).parent().css("display","none");
+		});
+
+		$( ".progressbar" ).progressbar();
+		$( "#sugar" ).slider({ max: 10 });
+		$( "#sugar" ).on( "slide", function( event, ui ) {
+			$("#sugar_amount").text(ui.value);
+		} );
+		$( ".accordion" ).accordion({ heightStyle: "content", collapsible: true});
+		$( ".radio" ).buttonset();
+		$( "#make" ).button({ disabled: true });
+
+		$("#try-again").click(function(){
+			$(this).button("option", "label", "There is nothing to try again");
+			$(this).click(function(){
+				$(this).button("option", "label", "Please do not press this button again");
+				$(this).click(function(){
+					$(this).hide();
+				});
+			});
+		});
+
+		$('input[type=radio][name=project]').change(function() {
+			$( "#make" ).button({ disabled: false });
+		});	
+		$("#make").click(function(){
+			$("#coffee-select").hide("blind");
+			$("input[type='radio']:checked").each(function() {
+		        var idVal = $(this).attr("id");
+		        var coffee_name = $("label[for='"+idVal+"']").text();
+		        $("#coffee_name").text(coffee_name);
+				$("#coffee_progress").show("blind");
+				var progress = 0
+				var notify_length = $('#notifications').children().length;
+				$(document).notify({ autoClose: "no", closable: "no", massage: coffee_name, class: "coffee_notification", icon: "apps/uitest/coffee.svg" });
+				var make_coffee = setInterval(function () {
+					progress = progress+1;
+					$( ".progressbar" ).progressbar("value", progress);
+					$("#notify_"+notify_length).children(".notify_icon").children(".notify_progress").css("width", progress+"%");
+					if (progress == 97 ) {
+						$("#notify_"+notify_length).children(".notify_icon").children(".notify_progress").css("background-color", "red");
+						var running_windows = $('#application').children().length+1;
+						$("#application").attr("value",running_windows);
+						$("#application").append('<div class="appwin" id="app_'+running_windows+'" appno="'+running_windows+'" ></div>');
+						$("#app_"+running_windows+"").load("apps/uitest/coffee_error.html");
+						$("#app_"+running_windows+"").css("z-index",running_windows);
+						clearInterval(make_coffee);
+					}
+				},400);
+			});
+		});
+
+		$("#show_notification").click(function(){
+			var notify_length = $('#notifications').children().length;
+			var text = $("input[name='notify_text']").val();
+			var progress = $("#progress").val();
+			if($("input[name='autoclose']").is(':checked'))
+			    var autoc = "yes";
+			else
+			   var autoc = "no";
+
+			if($("input[name='closable']").is(':checked'))
+			    var clsbl = "yes";
+			else
+			    var clsbl = "no";
+			$(document).notify({ autoClose: autoc, closable: clsbl, massage: text });
+			$("#notify_"+notify_length).children(".notify_icon").children(".notify_progress").css("width", progress+"%");
+		});
+
+	</script>
+	<style type="text/css">
+	.uitest {
+		position: fixed;
+		z-index: 1;
+		width: 55vw;
+		height: 70vh;
+	}
+
+	</style>
+</head>
+<body>
+<div class="uitest window w-normal">
+	<div class="menu" id="m-file">
+		<div id="new"> <img></img> <span>New</span> </div>
+		<div id="open"> <img></img> <span>Open</span> </div>
+		<div id="recent"> <img></img> <span>Recent</span> </div>
+		<div id="save"> <img></img> <span>Save</span> </div>
+		<div id="saveas"> <img></img> <span>Save As...</span> </div>
+		<div id="print"> <img></img> <span>Print</span> </div>
+		<div id="page"> <img></img> <span>Page</span> </div>
+		<div id="properties"> <img></img> <span>Properties</span> </div>
+		<div id="quit"> <img></img> <span>Quit</span> </div>
+	</div>
+	
+	<div class="w-title-decoration" style="height: 60px; background-color: rgb(82, 255, 119);"></div>
+	<div class="w-buttons">
+		<div class="w-button w-button-minimize"><img class="w-icons w-minimize"></img></div>
+		<div class="w-button w-button-maximize"><img class="w-icons w-maximize"></img></div>
+		<div class="w-button w-button-close"><img class="w-icons w-close"></img></div>
+	</div>
+	<img class="w-icon" src="apps/uitest/icon.svg"></img>
+	<div class="w-title"><span id="uitest-title">User Interface Test</span>
+		<div class="w-menubar">
+			<div class="wmi mb-file" name="file" title="File"></div>
+			<div class="wmi mb-edit" title="Edit"></div>
+			<div class="wmi mb-view" title="View"></div>
+			<div class="wmi mb-window" title="Window"></div>
+			<div class="wmi mb-help" title="Help"></div>
+		</div>
+	</div>
+	<div class="w-content" style="margin-left:5px; margin-right: 5px;">
+		<div class="w-padding"></div>
+		<div class="tabs">
+			<ul>
+			<li><a href="#fragment-1"><span>Accodion</span></a></li>
+			<li><a href="#fragment-2"><span>Coffee Maker</span></a></li>
+			<li><a href="#fragment-3"><span>Notification</span></a></li>
+			</ul>
+			<div id="fragment-1">
+				<div class="accordion">
+					<h3>Section 1</h3>
+					<div>
+					<p>You're looking Section 1. Really! </p>
+					</div>
+					<h3>Section 2</h3>
+					<div>
+					<p>Here is Section 2. There is nothing. You can take a look to Section 3.</p>
+					</div>
+					<h3>Section 3</h3>
+					<div>
+					<p>I'm glad to see you here. Did you enjoy with accordion? I'm sorry the is no Section 4. 
+
+					Oh! Look at that:</p>
+					<ul>
+					<li>List item one</li>
+					<li>List item two</li>
+					<li>List item three</li>
+					<li>List item four</li>
+					<li>List item five</li>
+					<li>List item six</li>
+					<li>List item seven</li>
+					<li>List item eight</li>
+					<li>List item nine</li>
+					<li>List item ten</li>
+					<li>List item eleven</li>
+					<li>List item twelve</li>
+					<li>List item thirteen</li>
+					<li>List item fourteen</li>
+					<li>List item fifteen</li>
+					<li>List item sixteen</li>
+					<li>List item seventeen</li>
+					<li>List item nineteen</li>
+					<li>List item twenty</li>
+					<li>List item twenty one</li>
+					<li>List item twenty two</li>
+					<li>List item twenty three</li>
+					<li>List item twenty four</li>
+					<li>List item twenty five</li>
+					</ul>
+					</div>
+				</div>
+				</br>
+				<button id="try-again">Try Again</button>
+			</div>
+				
+			<div id="fragment-2">
+
+				<div style="display: none" id="coffee_progress">
+					<p>Price: 50$ </p>
+					<p>The payment was made ​​by your credit card.</p>
+					<p>Your <span id="coffee_name"></span> will be ready soon. Please wait. </p>
+					<div class="progressbar" id"coffee_progressbar"></div>
+				</div>
+
+				<div id="coffee-select">
+					<form>
+					<fieldset>
+					<legend style="text-align: center;">Select your coffee</legend>
+					<div style="text-align: center;" class="radio">
+					<input type="radio" id="americano" name="project">
+					<label for="americano">Americano</label>
+					<input type="radio" id="Bicerin" name="project">
+					<label for="Bicerin">Bicerin</label>
+					<input type="radio" id="bombon" name="project">
+					<label for="bombon">Cafe Bombon</label>
+					<input type="radio" id="Cafeaulait" name="project">
+					<label for="Cafeaulait">Café au lait</label>
+					<input type="radio" id="corretto" name="project">
+					<label for="corretto">Caffè corretto</label>
+					<input type="radio" id="crema" name="project">
+					<label for="crema">Café Crema</label>
+					<input type="radio" id="mélange" name="project">
+					<label for="mélange">Café mélange</label>
+					<input type="radio" id="latte" name="project">
+					<label for="latte">Caffé Latte</label>
+					<input type="radio" id="milk" name="project">
+					<label for="milk">Caffé Milk</label>
+					<input type="radio" id="caphesuada" name="project">
+					<label for="caphesuada">Ca phe sua da</label>
+					<input type="radio" id="cappuccino" name="project">
+					<label for="cappuccino">Cappuccino</label>
+					<input type="radio" id="Espresso" name="project">
+					<label for="Espresso">Espresso</label>
+					<input type="radio" id="Eiskaffee" name="project">
+					<label for="Eiskaffee">Eiskaffee</label>
+					<input type="radio" id="flatwhite" name="project">
+					<label for="flatwhite">The Flat White</label>
+					<input type="radio" id="iced" name="project">
+					<label for="iced">Iced Coffee</label>
+					<input type="radio" id="frappe" name="project">
+					<label for="frappe">Greek frappé coffee</label>
+					<input type="radio" id="Galão" name="project">
+					<label for="Galão">Galão</label>	
+					<input type="radio" id="indian" name="project">
+					<label for="indian">Indian filter coffee</label>
+					<input type="radio" id="KopiLuwak" name="project">
+					<label for="KopiLuwak">Kopi Luwak</label>
+					<input type="radio" id="KopiTubruk" name="project">
+					<label for="KopiTubruk">Kopi Tubruk</label>
+					<input type="radio" id="Turkish" name="project">
+					<label for="Turkish">Turkish Coffee</label>
+					<input type="radio" id="Yuanyang" name="project">
+					<label for="Yuanyang">Yuanyang</label>
+					</div>
+					</fieldset>
+					</form>
+					</br>
+					<span>Sugar:  <strong><span id="sugar_amount">0</span></strong></span>
+					<div id="sugar" style="position: relative; margin-left: 10px; display:inline-block; width: 300px"></div>	
+					<span>  Cup:</span>
+					<input id="cup" class="spinner" min="0" value="1">
+					</br>
+					<button id="make">Make Coffee!</button>
+				</div>
+			</div>
+
+			<div id="fragment-3">
+				<form>
+					Notification text: <input type="text" name="notify_text"><br>
+					<input type="checkbox" name="autoclose">Close notification automatically.<br>
+					<input type="checkbox" name="closable" checked>Notification can be closed.<br>
+					If you want you can show progress percentage: <input id="progress" class="spinner" min="0" max="100"value="0">%<br>
+				</form> 
+				<button id="show_notification">Show Notification</button>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>

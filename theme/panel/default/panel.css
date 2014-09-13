@@ -1,0 +1,119 @@
+.panel{
+	position: fixed;
+	top: 50%;
+	z-index: 5000;
+	}
+
+#left_panel, #right_panel {
+	-moz-user-select: none;
+	display: none;
+	background: rgba(50,50,50,0.6);
+	position:fixed;
+	border: 1px solid black;
+	}
+
+	
+#right_panel {
+	right:-355px;
+	border-top-left-radius: 0.2em;
+	border-bottom-left-radius: 0.2em;
+	}
+
+#left_panel {
+	left: -350px;
+	border-top-right-radius: 0.2em;
+	border-bottom-right-radius: 0.2em;
+}
+
+#starter_content {
+	
+}
+
+#miniapp_content {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.panel_content {
+	display: table-cell;
+	padding: 3px;
+	}
+
+
+
+.panel_item {
+	border: 1px solid dimgray;
+	border-bottom-width: 0;
+	background-size: cover;
+	transition: border 0s;
+
+}
+
+.panel_item:active {
+	border: 1px solid white;
+}
+
+.panel_item:last-child {
+	border-bottom-width: 1px;
+}
+	
+.miniapp{
+	background-color: #7F7F7F;
+	margin-right: 5px;
+	}
+
+#apps, .hsi_l:nth-child(1) {
+	background-color: #DB0007;
+	}
+
+#personal, .hsi_l:nth-child(2) {
+	background-color: #FF7103;
+	}
+
+#media, .hsi_l:nth-child(3) {
+	background-color: #F4E611;
+	}
+
+#games, .hsi_l:nth-child(4) {
+	background-color: #6CAB1D;
+	}
+
+#internet, .hsi_l:nth-child(5) {
+	background-color: #0F69D7;
+	}
+
+#shop, .hsi_l:nth-child(6) {
+	background-color: #7C2D9B;
+	}
+
+.panel_icon {
+	background-size: cover;
+	opacity: 0.9;
+}
+
+
+.panelapp {
+	height: 100%;
+	width: 100%;
+}
+.miniapp_icon {
+	height: 100%;
+}
+
+.panel_container { 
+	display: flex;
+}
+
+.panel_item_content {
+	width: 320px;
+	overflow: hidden;
+}
+
+.panelapp_mini {
+	height: 100%;
+}
+
+.panel_blank {
+	display: table-cell;
+	width: 30px;
+}

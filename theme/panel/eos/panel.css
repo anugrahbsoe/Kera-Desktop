@@ -1,0 +1,123 @@
+#left_hotspot {
+	float: left;
+	}
+
+#right_hotspot {
+	height: 100%;
+	float: right;
+	}
+
+#top_hotspot {
+	min-height: 1px;
+	width: 100%;
+	}
+
+
+.panel{
+	position: fixed;
+	top: 50%;
+	z-index: 5000;
+	}
+
+#left_panel, #right_panel {
+	-moz-user-select: none;
+	display: none;
+	position:fixed;
+	}
+
+	
+#right_panel {
+	right:-355px;
+	border-top-left-radius: 0.4em;
+	border-bottom-left-radius: 0.4em;
+	}
+
+#left_panel {
+	left: -350px;
+	border-top-right-radius: 0.4em;
+	border-bottom-right-radius: 0.4em;
+}
+
+#starter_content {
+	
+}
+
+#miniapp_content {
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.panel_content {
+	display: table-cell;
+	padding: 5px;
+	}
+
+.panel_item {
+	border-radius: 0.4em;
+	margin: 6px;
+	border: 1px solid dimgray;
+	background-size: cover;
+
+}
+
+
+.left_item{
+	background-image: url(contents/panel/item_l.svg);
+		}
+	
+.miniapp{
+	background-image: url(contents/panel/item_r.svg);
+	background-color: #7F7F7F;
+	margin-right: 5px;
+	}
+
+#apps {
+	background-color: #DB0007;
+	}
+
+#personal {
+	background-color: #FF7103;
+	}
+
+#media {
+	background-color: #F4E611;
+	}
+
+#games {
+	background-color: #6CAB1D;
+	}
+
+#internet {
+	background-color: #0F69D7;
+	}
+
+#shop {
+	background-color: #7C2D9B;
+	}
+
+.panel_icon {
+	background-size: cover;
+	opacity: 0.9;
+}
+
+.panelapp {
+	height: 100%;
+	width: 100%;
+}
+.miniapp_icon {
+	height: 100%;
+}
+
+.panel_container { 
+	display: table;
+}
+
+.panel_item_content {
+	width: 320px;
+	overflow: hidden;
+}
+
+.panel_blank {
+	display: table-cell;
+	width: 30px;
+}

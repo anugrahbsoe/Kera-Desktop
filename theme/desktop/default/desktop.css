@@ -1,0 +1,321 @@
+
+
+html, body, #desktop, #background, #startup, #hotspots{
+	height: 100%; width: 100%;
+	}
+
+body {
+	margin: 0;
+	cursor: default;
+	}
+
+* {
+	-moz-user-select: none;
+}
+
+
+#background, #startup{
+	position:absolute; 
+	top:0px; 
+	left:0px; 
+	bottom:0px;
+	right:0px; 
+	border:none; 
+	margin:0; 
+	padding:0; 
+	}
+
+
+#startup_text {
+	display: none;
+	color: gray;
+	font-size: 10em;
+	letter-spacing: 0.2cm;
+	position: relative;
+	top: 50%;
+	text-align: center;
+	margin-top: -0.57em;
+	}
+
+#startup {
+	z-index: -99999;
+	background-color: black;
+	cursor: none
+	}
+
+#desktop {
+	opacity: 0.001;
+	position: fixed;
+	}
+
+#background {
+	z-index: -99998;
+	}
+
+.hotspot {
+	position: fixed;
+	background-color: black;
+	z-index: 9000;
+	}
+
+#left_hotspot {
+	left: 0;
+	width: 2px;
+	height: 100%;
+	}
+
+#right_hotspot {
+	height: 100%;
+	width: 2px;
+	right: 0;
+	}
+
+#top_hotspot {
+	height: 2px;
+	width: 100%;
+	}
+
+#top-area {
+	vertical-align:top;
+	position: fixed;
+	right: 0;
+	opacity: 0;
+	z-index: 5000;
+	margin: 15px;
+	max-height: 34px;
+}
+
+#notifications {
+	vertical-align:top;
+	position: relative;
+	display: inline-block;
+	max-height: 34px;
+	}
+
+.notify {
+	vertical-align:top;
+	position: relative;
+	display: inline-block;
+	margin-right: 3px;
+	max-height: 34px;
+}
+
+.notify_icon {
+	vertical-align:top;
+	position: relative;
+	display: inline-block;
+	box-shadow: 0 0 2px 0 black;
+	height: 34px;
+	width: 34px;
+	z-index: 1;
+
+}
+
+.notify_icon img {
+	width: 16px;
+	height: 16px;
+	margin: 9px;
+}
+
+.notify_content {
+	display: none;
+	font-size: 14px;
+	padding: 6.5px;
+	right: 4px;
+	position: relative;
+	max-width: 400px;
+	max-height: 32px;
+	display: none;
+	background-color: white;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-height: 34px;
+}
+
+.notify_content img {
+	margin-left: 9px;
+	width: 12px;
+	height: 12px;
+}
+
+.notify_progress {
+	position: relative;
+	height: 34px;
+	background-color: #0095FF;
+}
+
+#system_tray {
+	position: relative;
+	padding: 4px;
+	display: inline-block;
+	background-color: rgba(0,0,0,0.5);
+	border-radius: 0.2em 0.2em;
+	border: 1px solid black;
+	
+}
+
+
+#system_tray div {
+	display: inline-block;
+	position: relative;
+	margin-left: 5px;	
+}
+
+#clock {
+	color: white;
+	font-size: 14px;
+	margin-right: 5px;
+}
+
+#wifi {
+	height: 16px;
+	width: 16px;
+	background-image: url("contents/wifi.svg");
+	background-position: center center;
+	top: 4px;
+}
+
+#battery {
+	height: 16px;
+	width: 16px;
+	background-image: url("contents/battery.svg");
+	background-position: center center;
+	top: 4px;
+}
+
+#battery-in {
+	position: relative;
+	right: 8px;
+	width: 11px;
+	height: 8px;
+	bottom: 4px;
+}
+
+#battery-level {
+	background-color: #FFF;
+	width: 100%;
+	height: 100%;
+}
+
+#focus_helper {
+	position: fixed;
+	display: none;
+	opacity: 0.3;
+	background-color: black;
+	width: 100%;
+	height: 100%;
+	z-index: 4000;
+}
+
+#desktop_icons{
+	position: absolute;
+	height: 90%;
+	width: 89%;
+	top: 6%;
+	left: 6%;
+	overflow: auto;
+}
+
+.icon_box {
+	width: 70px;
+	height: 70px;
+	margin: 0.5em;
+	display: inline-block;
+	border-radius: 0.3em;
+	transition: background-color 0.2s;
+	transition: box-shadow 0.1s;
+}
+
+.icon_box:hover {
+	background-color: rgba(0,0,0,0.2);
+}
+
+.desktop_icon {
+	position: relative;
+	left: 10px;
+	width:42px;
+	height:42px;
+	margin: 2px;
+	margin-bottom: 0;
+}
+
+.desktop_icon_name {
+	color: white;
+	text-shadow: 0 0 0.1em black;
+	text-align: center;
+	font-size: 14px;
+	bottom: 4px;
+	position: relative;
+}
+
+#application {
+	position: absolute;
+	z-index: 1;
+}
+
+.appwin {
+	position: absolute;
+}
+
+#taskbar {
+	margin-left: 4px;
+	position: fixed;
+	z-index: 5000;
+}
+
+.taskbar-item {
+	animation: show 0.2s;
+	transition: top 0.2s;
+	position: relative;
+	overflow: hidden;
+	top:-40px;
+	margin-left: 4px;
+	display: inline-block;
+	border-bottom-right-radius: 0.1em 0.1em;
+	border-bottom-left-radius: 0.1em 0.1em;
+	box-shadow: 0 0 2px black;
+	width: 50px;
+	height: 55px;
+}
+
+@keyframes show {
+    from {top:-50px;}
+    to {top:-40;}
+} 
+
+.taskbar-item:first-child {
+	top: 0;
+}
+
+.taskbar-item:hover {
+	top: 0;
+}
+
+.taskbar-item-icon {
+	position: absolute;
+	top: 6px;
+	margin: 4px;
+	width: 42px;
+	height: 42px;
+}
+
+.hs_area {
+	transition: opacity 0.5s;
+	opacity: 0;
+	top: 50%;
+	display: table-cell;
+	position: absolute;
+	width: 50%;
+}
+
+.hs_area > div {
+	margin-top: 1px;
+}
+
+.hs_area > div:active {
+	background-color: white;
+}
+
+#hsa_r {
+	right: 0;
+}

@@ -1,0 +1,12 @@
+{
+	"uitest":[{
+		"abs_name":"uitest",
+		"name":"UI Test",
+		"genericname":"Test Application",
+		"description":"User Interface test application",
+		"type":"application",
+		"categories":"system",
+		"icon":"apps/uitest/icon.svg",
+		"run":"apps/uitest/uitest.html"
+	}]
+}

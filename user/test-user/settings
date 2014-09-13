@@ -1,0 +1,38 @@
+{
+"locale":[{
+	"language": "en",
+	"direction": "left",
+	"clock-format": "12"
+}],
+
+"theme":[{
+	"desktop": "theme/desktop/default",
+	"window": "theme/window/default",
+	"panel": "theme/panel/default",
+	"ui":"theme/ui/Kera",
+	"icon": "default",
+	"background": "theme/background/image",
+	"bg_image": "contents/4.jpg",
+	"startup_text": "Kera",
+	"background_style": "fit"
+}],
+
+"font":[{
+	"general": "",
+	"startup": ""
+}],
+
+"text_color":[{
+	"startup": "gray"
+}],
+
+"theme_color":[{
+	"startup": "black"
+}],
+
+"panel":[{
+	"icon_size": "40",
+	"auto-hide": false
+}]
+
+}

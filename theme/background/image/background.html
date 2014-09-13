@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../../../js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+$.getJSON("../../../user/loggedin.json", function(user){
+$.getJSON("../../../user/"+user.user+"/settings", function(json) {
+	$.each(json.theme,function (i,theme) {
+		$("body").css("background-image", "url('"+theme.bg_image+"')");
+		var style= ""+theme.background_style+""});
+			
+		if (style="fit"){
+			$("body").css("background-size","cover");
+			}
+		
+		else if (style="repeat") {
+			$("body").css("background-repeat","repeat");
+		}
+				
+		else if (style="centered_repeat") {
+			$("body").css({"background-position":"center","background-repeat":"repeat"});
+		}
+		
+		else if (style="centered") {
+			$("body").css("background-position","center");
+		}
+		
+});
+});
+</script>
+</head>
+<body style="background-repeat: no-repeat;}">
+
+</body>
+</html>

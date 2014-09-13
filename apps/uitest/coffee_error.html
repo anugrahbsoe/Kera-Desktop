@@ -1,0 +1,41 @@
+<html>
+<head>
+<script src="js/window.js"></script>
+
+	<script type="text/javascript">
+		$.getScript( "js/menu.js");
+
+		var this_app = $(".window:last").parent().attr('id');
+		$("#"+this_app).children(".window").position({
+			my: "center",
+			at: "center",
+			of: "#desktop"
+		}); 
+
+		$(".w-button-close").click(function () {
+			$(".coffee_notification").remove();
+		});
+
+
+	</script>
+	<style type="text/css">
+	.uitest_error {
+		position: fixed;
+		z-index: 1;
+		width: 35vw;
+		height: 30vh;
+	}
+
+	</style>
+</head>
+<body>
+<div class="uitest_error window w-dialog">
+	<div class="w-dialog_decoration warning-img" style="background-color: red"></div>
+	<div class="w-content">
+		<h1>Sorry</h1>
+		<p>You know. I can't make coffee.</p> <br>
+		<button class="w-button-close">OK</button>
+	</div>
+</div>
+</body>
+</html>
