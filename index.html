@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Kera Desktop</title>
+	<script src="js/jquery-2.1.1.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.i18n/libs/CLDRPluralRuleParser/src/CLDRPluralRuleParser.js"></script>
+	<script src="js/jquery.transit.min.js"></script>
+	<script src="js/theme.js"></script>
+	<script src="js/panel.js"></script>
+	<script src="js/menu.js"></script>
+	<script src="js/systemtray.js"></script>
+	<script src="js/notification.js"></script>
+	<script src="js/desktop.js"></script>
+	<script src="js/window.js"></script>
+	<script src="js/taskbar.js"></script>
+	<script src="js/startup.js"></script>
+	<link id="desktop_theme" rel="stylesheet" type="text/css">
+	<link id="ui_theme" rel="stylesheet" type="text/css">
+	<link id="ui_theme2" rel="stylesheet" type="text/css">
+	<link id="ui_theme3" rel="stylesheet" type="text/css">
+	<link id="panel_theme" rel="stylesheet" type="text/css">
+	<link id="window_theme" rel="stylesheet" type="text/css">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<style type="text/css">
+		@font-face {
+	        font-family: "Hind";
+	        src: url(fonts/hind/Hind-Regular.ttf);
+		}
+
+		@font-face {
+	        font-family: "NanumBarunGothic";
+	        src: url(fonts/NanumBarunGothic.ttf);
+		}
+
+		body {
+			font-family: "Hind";
+		}
+
+		#startup_text {
+			font-family: "NanumBarunGothic";
+		}
+
+	</style>
+</head>
+
+
+<body>
+	<div id="startup">
+		<div id="startup_text"></div>
+	</div>
+	
+	<div id="top_hotspot" class="hotspot"></div>
+	<div id="left_hotspot" class="hotspot">
+		<div class="hs_area" id="hsa_l">
+			<div class="hsi_l"></div>
+			<div class="hsi_l"></div>
+			<div class="hsi_l"></div>
+			<div class="hsi_l"></div>
+			<div class="hsi_l"></div>
+			<div class="hsi_l"></div>
+		</div>
+	</div>
+	<div id="right_hotspot" class="hotspot">
+		<div class="hs_area" id="hsa_r">
+			<div class="hsi_r"></div>
+			<div class="hsi_r"></div>
+			<div class="hsi_r"></div>
+			<div class="hsi_r"></div>
+			<div class="hsi_r"></div>
+			<div class="hsi_r"></div>
+		</div>
+	</div>
+
+	<div id="application" value="0"></div>
+	<div id="taskbar"></div>
+	<div id="desktop">
+		<iframe id="background" frameborder="0" scrolling="no"></iframe>
+		<div id="desktop_icons"></div>
+
+	</div>
+	<div id="top-area">
+		<div id="notifications"></div>
+		<div id="system_tray">
+			<div id="wifi"></div>
+			<div id="battery" class="tray-item" title="No battery information">
+				<div id="battery-in">
+					<div id="battery-level"></div>
+				</div>
+			</div>
+			<div id="clock" class="clock tray-item"></div>
+		</div>
+	</div>
+	
+<div class="panel">
+	<div id="left_panel">
+		<div id="left_panel_container" class="panel_container">
+			<div class="panel_blank"></div>
+			<div id="startitem_content" class="panel_item_content">
+		</div>
+
+		<div class="panel_content" id="starter_content"> 
+			<div id="apps" class="panel_item left_item" title="Applications">
+				<div id="apps_icon" class="panel_icon"></div>
+			</div>
+							
+			<div id="personal" class="panel_item left_item" title="Files & Folders">
+				<div id="personal_icon" class="panel_icon"></div>
+			</div>
+			
+			<div id="media" class="panel_item left_item" title="Media">
+				<div id="media_icon" class="panel_icon"></div>
+			</div>
+				
+			<div id="games" class="panel_item left_item" title="Games">
+				<div id="games_icon" class="panel_icon"></div>
+			</div>
+			
+			<div id="internet" class="panel_item left_item" title="Internet">
+				<div id="internet_icon" class="panel_icon"></div>
+			</div>	
+
+			<div id="shop" class="panel_item left_item" title="Shop">
+				<div id="shop_icon" class="panel_icon"></div>
+			</div>
+		</div>
+	</div>				
+</div>		
+
+			
+<div class="panel">
+	<div id="right_panel">
+		<div id="right_panel_container" class="panel_container">
+			<div class="panel_content" id="miniapp_content"></div>
+			<div id="panelapp_content" class="panel_item_content"></div>
+			<div class="panel_blank"></div>
+
+		</div>
+	</div>
+</div>
+
+</body>
+</html>

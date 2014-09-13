@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+	<style>
+		 #container {
+			 background-color:#FFEFBA;
+			 margin: 0;
+			 width: 100%;
+			 height: 100%;
+			 }
+		.c {
+			text-align: center;
+			width: 100%;
+			}
+			
+		#red {
+			background-color: #A52A2A;
+			}
+		
+		#week {
+			color: white;
+			text-align: center;
+			font-size: 70%;
+			}
+			
+		#month {
+			font-size: 50%;
+			margin-top: 2%;
+			}
+			
+		#day {
+			position: relative;
+			bottom: 18%;
+			font-size: 210%;
+			
+			}
+	</style>
+	
+	<script>
+	$.getJSON("user/loggedin.json", function(user){
+		$.getJSON("user/"+user.user+"/settings", function(json) {
+			$.each(json.font,function (i,font) {
+				$("body").css("font-family",""+font.general+"");
+			});
+			
+			$.each(json.locale,function (i,locale) {
+				$.getJSON("locale/"+locale.language+"/calendar", function(calendar) {
+					
+					function date() {
+						var date = new Date();
+						var month = date.getMonth() + 1;
+    					if ( month == 1 ) month = calendar.t1;
+    					else if ( month == 2 ) month = calendar.t2;
+    					else if ( month == 3 ) month = calendar.t3;
+    					else if ( month == 4 ) month = calendar.t4;
+    					else if ( month == 5 ) month = calendar.t5;
+    					else if ( month == 6 ) month = calendar.t6;
+    					else if ( month == 7 ) month = calendar.t7;
+    					else if ( month == 8 ) month = calendar.t8;
+    					else if ( month == 9 ) month = calendar.t9;
+    					else if ( month == 10 ) month = calendar.t10;
+    					else if ( month == 11 ) month = calendar.t11;
+    					else if ( month == 12 ) month = calendar.t12;
+
+    					return month;
+					};
+    					
+    				function date2() {
+						var date = new Date();
+						var day = date.getDay() +1;
+    					if ( day == 1 ) day = calendar.t13;
+    					else if ( day == 2 ) day = calendar.t14;
+    					else if ( day == 3 ) day = calendar.t15;
+    					else if ( day == 4 ) day = calendar.t16;
+    					else if ( day == 5 ) day = calendar.t17;
+    					else if ( day == 6 ) day = calendar.t18;
+    					else if ( day == 7 ) day = calendar.t19;
+
+    					return day;
+    				};
+    				
+    				function date3() {
+    					var date = new Date();
+    					var dayy = date.getDate();
+    					return dayy;
+    				};	
+    					
+						$("#month").html( date() );
+						$("#week").html( date2() );
+						$("#day").html( date3() );
+					
+					function weekend() {
+						if ( date2()  == calendar.t13) 
+							{ 
+								$("#day").css("color","#7E0A0A");
+							}
+						}
+					
+				});
+			});
+			
+		});
+	});
+	</script>
+	
+</head>
+
+<body>
+	<div title="Calendar" id="container">
+		<div id="red" class="c">
+			<div id="week"></div>
+		</div>
+			
+		<div id="month" class="c"></div>
+		<div id="day" class="c"></div>
+	</div>
+</body>
+</html>
